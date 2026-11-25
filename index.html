@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark" data-lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enes Aytekin — Data &amp; Analytics Engineering • Backend Development</title>
+  <meta
+    name="description"
+    content="Enes Aytekin — Yazılım Mühendisliği 4. Sınıf Öğrencisi. Ölçeklenebilir veri boru hatları (ETL/ELT), yıldız şema (Star Schema) veri ambarı modelleme, dbt, Dagster, PostgreSQL ve asenkron FastAPI REST API mimarileri."
+  />
+  <meta name="author" content="Enes Aytekin" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0c0f14" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f6f8fa" media="(prefers-color-scheme: light)" />
+
+  <!-- OpenGraph / Link Previews -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Enes Aytekin" />
+  <meta property="og:title" content="Enes Aytekin — Data &amp; Analytics Engineering • Backend Development" />
+  <meta
+    property="og:description"
+    content="Ölçeklenebilir veri boru hatları (ETL/ELT), yıldız şema veri ambarı modelleme ve asenkron REST API mimarileri geliştiren yazılım mühendisliği son sınıf öğrencisi."
+  />
+  <meta property="og:image" content="assets/og-preview.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Enes Aytekin — Data &amp; Analytics Engineering ve Backend Development Portföyü" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Enes Aytekin — Data &amp; Analytics Engineering • Backend Development" />
+  <meta
+    name="twitter:description"
+    content="ETL/ELT veri boru hatları, dbt Star Schema veri ambarı modelleme, Dagster orkestrasyon ve asenkron FastAPI REST API mimarileri."
+  />
+  <meta name="twitter:image" content="assets/og-preview.png" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <!-- Fonts with system fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Synchronous Theme & Lang Init (prevents FOUC; defaults to dark & tr) -->
+  <script>
+    (function () {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var qt = params.get("theme");
+        var st = localStorage.getItem("portfolio_theme");
+        var theme =
+          qt === "light" || qt === "dark"
+            ? qt
+            : st === "light" || st === "dark"
+              ? st
+              : "dark";
+        document.documentElement.setAttribute("data-theme", theme);
+
+        var ql = params.get("lang");
+        var sl = localStorage.getItem("portfolio_lang");
+        var lang =
+          ql === "tr" || ql === "en"
+            ? ql
+            : sl === "tr" || sl === "en"
+              ? sl
+              : "tr";
+        document.documentElement.setAttribute("data-lang", lang);
+        document.documentElement.lang = lang;
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "dark");
+        document.documentElement.setAttribute("data-lang", "tr");
+      }
+    })();
+  </script>
+
+  <!-- Structured Data (JSON-LD) for Search Engines -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Enes Aytekin",
+      "jobTitle": "Yazılım Mühendisliği 4. Sınıf Öğrencisi | Data & Analytics Engineering • Backend Development",
+      "description": "Ölçeklenebilir veri boru hatları (ETL/ELT), yıldız şema (Star Schema) veri ambarı modelleme ve asenkron REST API mimarileri geliştirmeye odaklanan yazılım mühendisliği son sınıf öğrencisi.",
+      "telephone": "+905309486120",
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "İstanbul Beykent Üniversitesi"
+      },
+      "sameAs": [
+        "https://github.com/EnesAytekintr",
+        "https://www.linkedin.com/in/enes-aytekin-3346a6308/"
+      ],
+      "knowsAbout": [
+        "Data Engineering",
+        "Analytics Engineering",
+        "Backend Development",
+        "PostgreSQL",
+        "SQL",
+        "dbt",
+        "Dagster",
+        "Python",
+        "FastAPI",
+        "SQLAlchemy",
+        "Docker",
+        "Star Schema Modeling"
+      ]
+    }
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link" data-i18n="a11y.skip">İçeriğe geç</a>
+
+  <!-- Top Navigation -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="Enes Aytekin">
+        <span class="brand-mark" aria-hidden="true">EA</span>
+        <span class="brand-text">
+          <span class="brand-name">Enes Aytekin</span>
+          <span class="brand-tag">data &amp; backend</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Ana gezinme">
+        <a href="#approach" class="nav-link" data-i18n="nav.approach">Yaklaşımım</a>
+        <a href="#projects" class="nav-link" data-i18n="nav.projects">Projeler</a>
+        <a href="#skills" class="nav-link" data-i18n="nav.skills">Yetkinlikler</a>
+        <a href="#contact" class="nav-link" data-i18n="nav.contact">Eğitim &amp; İletişim</a>
+      </nav>
+
+      <div class="header-controls">
+        <div class="lang-switch" role="group" aria-label="Dil seçimi">
+          <button type="button" class="lang-btn" data-lang="tr" aria-pressed="true">TR</button>
+          <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+
+        <button
+          type="button"
+          class="icon-btn theme-toggle"
+          id="theme-toggle"
+          aria-label="Açık temaya geç"
+          title="Açık temaya geç"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          class="icon-btn menu-toggle"
+          id="menu-toggle"
+          aria-expanded="false"
+          aria-controls="main-nav"
+          aria-label="Menüyü aç"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- 1. HERO SECTION -->
+    <section class="hero-section" aria-labelledby="hero-name">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="hero-eyebrow">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span data-i18n="hero.badge">Yazılım Mühendisliği 4. Sınıf Öğrencisi</span>
+          </div>
+
+          <h1 id="hero-name" class="hero-name">Enes Aytekin</h1>
+
+          <p class="hero-role" data-i18n="hero.role">
+            Yazılım Mühendisliği 4. Sınıf Öğrencisi <span class="role-sep" aria-hidden="true">|</span> Data &amp; Analytics Engineering • Backend Development
+          </p>
+
+          <p class="hero-summary" data-i18n="hero.summary">
+            Ölçeklenebilir veri boru hatları (ETL/ELT), yıldız şema (Star Schema) veri ambarı modelleme ve asenkron REST API mimarileri geliştirmeye odaklanan yazılım mühendisliği son sınıf öğrencisi.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">
+              <span data-i18n="hero.cta.projects">Projeleri İncele</span>
+              <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10 4v12m0 0-4.5-4.5M10 16l4.5-4.5"></path>
+              </svg>
+            </a>
+
+            <a
+              href="https://github.com/EnesAytekintr"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-secondary"
+            >
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z"/>
+              </svg>
+              <span>GitHub</span>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/enes-aytekin-3346a6308/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-secondary"
+            >
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2A3.26 3.26 0 0 0 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17A1.4 1.4 0 0 1 15.71 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 0 0 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V10.13H5.5V18.5H8.27Z"/>
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+
+            <a href="#contact" class="btn btn-ghost">
+              <span data-i18n="hero.cta.contact">İletişim</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Subtle Engineering Architecture Schematic -->
+        <aside class="hero-schematic" aria-label="Mimari Odak Özeti">
+          <div class="schematic-header">
+            <span class="schematic-dots" aria-hidden="true">
+              <i></i><i></i><i></i>
+            </span>
+            <span class="schematic-title" data-i18n="hero.dag.title">architecture.focus // elt &amp; api</span>
+          </div>
+
+          <ol class="schematic-flow">
+            <li class="schematic-node node-blue">
+              <span class="node-step">01</span>
+              <div class="node-content">
+                <span class="node-label" data-i18n="hero.dag.s1.k">Veri Alımı (Ingestion)</span>
+                <span class="node-meta" data-i18n="hero.dag.s1.v">Generator akışı • psycopg2 COPY</span>
+              </div>
+            </li>
+            <li class="schematic-node node-emerald">
+              <span class="node-step">02</span>
+              <div class="node-content">
+                <span class="node-label" data-i18n="hero.dag.s2.k">Veri Ambarı &amp; Dönüşüm</span>
+                <span class="node-meta" data-i18n="hero.dag.s2.v">PostgreSQL • dbt Star Schema • SCD Type-2</span>
+              </div>
+            </li>
+            <li class="schematic-node node-amber">
+              <span class="node-step">03</span>
+              <div class="node-content">
+                <span class="node-label" data-i18n="hero.dag.s3.k">Orkestrasyon &amp; Konteyner</span>
+                <span class="node-meta" data-i18n="hero.dag.s3.v">Dagster Assets • Docker Compose</span>
+              </div>
+            </li>
+            <li class="schematic-node node-lavender">
+              <span class="node-step">04</span>
+              <div class="node-content">
+                <span class="node-label" data-i18n="hero.dag.s4.k">Asenkron Servis Katmanı</span>
+                <span class="node-meta" data-i18n="hero.dag.s4.v">FastAPI • SQLAlchemy Async • Pytest</span>
+              </div>
+            </li>
+          </ol>
+
+          <div class="schematic-footer">
+            <span class="mono-dim" data-i18n="hero.dag.school">İstanbul Beykent Üniv.</span>
+            <span class="mono-accent" data-i18n="hero.dag.footer">GNO 3.32 • 2027</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 2. ABOUT & ENGINEERING APPROACH -->
+    <section id="approach" class="section section-alt" aria-labelledby="approach-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow" data-i18n="approach.eyebrow">01 / MÜHENDİSLİK YAKLAŞIMIM</span>
+          <h2 id="approach-heading" class="section-title" data-i18n="approach.title">Hakkımda &amp; Çalışma Metodolojim</h2>
+        </div>
+
+        <blockquote class="approach-intro" data-i18n="approach.intro">
+          Yeni bir teknolojiyi öğrenirken doğrudan otomasyona veya yapay zeka araçlarına yaslanmak yerine, önce teorik temelleri ve sistemin sınırlarını bizzat kodlayarak kavramayı tercih ediyorum. Her yeni projemi bir öncekinin üzerine koyarak daha karmaşık veri senaryoları ve uç durumlarla (edge cases) test ediyorum.
+        </blockquote>
+
+        <!-- 3-Step Visual Progression Flow -->
+        <div class="methodology-flow" aria-label="3 adımlı mühendislik akışı">
+          <div class="flow-pill">
+            <span class="flow-num">01</span>
+            <span class="flow-text" data-i18n="approach.flow.1">Teori &amp; Çekirdek</span>
+          </div>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <div class="flow-pill">
+            <span class="flow-num">02</span>
+            <span class="flow-text" data-i18n="approach.flow.2">Ölçek &amp; Edge Case'ler</span>
+          </div>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <div class="flow-pill">
+            <span class="flow-num">03</span>
+            <span class="flow-text" data-i18n="approach.flow.3">Kontrollü AI &amp; Sürekli Pratik</span>
+          </div>
+        </div>
+
+        <!-- 3 Core Principles -->
+        <div class="principles-grid">
+          <article class="principle-card">
+            <div class="principle-head">
+              <span class="principle-index">01</span>
+              <h3 class="principle-title" data-i18n="approach.p1.title">Temelden İnşa ve Kademeli Derinleşme</h3>
+            </div>
+            <p class="principle-body" data-i18n="approach.p1.body">
+              Öğrenme sürecinde önce küçük prototiplerle teknolojinin çalışma mantığını ve kısıtlarını elle kodlayarak çözümlüyor, ardından gerçek dünya senaryolarına ve edge case'lere sahip daha kapsamlı mimarilere geçiyorum.
+            </p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-head">
+              <span class="principle-index">02</span>
+              <h3 class="principle-title" data-i18n="approach.p2.title">Denetimli AI ve Ajan Kullanımı</h3>
+            </div>
+            <p class="principle-body" data-i18n="approach.p2.body">
+              Temellerine hakim olduğum ve mimari muhakemesine güvendiğim alanlarda; tekrarlı kod blokları, konfigürasyon (YAML vb.) süreçleri veya ana uzmanlığım dışındaki arayüz katmanlarında yapay zeka ajanlarını hızlandırıcı olarak kullanıyor ve ürettikleri çıktıları bizzat denetleyerek sisteme entegre ediyorum.
+            </p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-head">
+              <span class="principle-index">03</span>
+              <h3 class="principle-title" data-i18n="approach.p3.title">Sürekli Zanaat ve Pratik</h3>
+            </div>
+            <p class="principle-body" data-i18n="approach.p3.body">
+              Problem çözmekten ve kod yazmaktan keyif aldığım için mühendislik reflekslerimi canlı tutmak adına boş zamanlarımda doğrudan elle kodlama pratikleri yapmaya devam ediyorum.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SELECTED PROJECTS -->
+    <section id="projects" class="section" aria-labelledby="projects-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow" data-i18n="projects.eyebrow">02 / SEÇİLMİŞ PROJELER</span>
+          <h2 id="projects-heading" class="section-title" data-i18n="projects.title">Veri Boru Hatları &amp; Backend Sistemleri</h2>
+          <p class="section-subtitle" data-i18n="projects.subtitle">
+            Her proje gerçek GitHub deposundaki mimari kararlar, katmanlı klasör yapısı ve veri kalitesi pratikleri temel alınarak özetlenmiştir. Diyagramları büyütmek için görsellere tıklayabilirsiniz.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <!-- PROJECT 1: ALL-IN-ONE -->
+          <article class="project-card">
+            <div class="project-media media-svg-dark">
+              <button
+                type="button"
+                class="media-trigger"
+                data-lightbox-src="templates/all_in_one.svg"
+                data-lightbox-title="All-In-One Hugging Face Data Pipeline — Dagster Asset Graph"
+                data-lightbox-bg="dark"
+                aria-label="All-In-One Hugging Face Data Pipeline diyagramını büyüt"
+              >
+                <img
+                  src="templates/all_in_one.svg"
+                  alt="All-In-One Hugging Face ELT boru hattının Dagster varlık ve dbt dönüşüm grafiği"
+                  class="project-img"
+                  loading="eager"
+                />
+                <span class="media-zoom-hint" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13 3h4v4M7 17H3v-4M17 3l-5 5M3 17l5-5"></path>
+                  </svg>
+                  <span data-i18n="projects.zoom">Büyüt</span>
+                </span>
+              </button>
+            </div>
+
+            <div class="project-body">
+              <h3 class="project-title" data-i18n="p1.title">All-In-One Hugging Face Data Pipeline</h3>
+              <p class="project-summary" data-i18n="p1.summary">
+                Verilen parametreye (<code>LIMIT</code>) göre minimum 1 kayıttan başlayıp Hugging Face Hub üzerindeki tüm model kataloğuna kadar dinamik ölçeklenebilen uçtan uca konteynerize ELT veri boru hattı ve asenkron REST API servisi. Generator tabanlı akışla 100 MB altında sabit bellek ayak iziyle veri çeker, binary <code>COPY</code> ile PostgreSQL'e yükler, dbt ile SCD Type-2 ve yıldız şema katmanlarına dönüştürür ve Dagster ile orkestre eder.
+              </p>
+
+              <ul class="project-highlights">
+                <li data-i18n="p1.h1"><strong>Dinamik &amp; Bellek Dostu Alım:</strong> Generator akışı ve hafif <code>expand</code> alanlarıyla tek geçişte CSV akışı, ardından <code>psycopg2 COPY</code> ile <code>raw.models_raw</code> katmanına yüksek hızlı aktarım.</li>
+                <li data-i18n="p1.h2"><strong>Katmanlı dbt Veri Ambarı:</strong> Timestamp tabanlı SCD Type-2 snapshot, <code>stg_models</code>, unnested bridge tabloları, <code>dim_author_v1</code>, artımlı <code>fct_model_metrics_v1</code> ve 4 analitik mart.</li>
+                <li data-i18n="p1.h3"><strong>Dagster &amp; Asenkron FastAPI:</strong> Python ingestion + dbt modellerini tek DAG'da birleştiren Software-Defined Assets, haftalık zamanlama, dbt YAML'dan dinamik tablo sürüm keşfi ve SlowAPI rate-limiting.</li>
+                <li data-i18n="p1.h4"><strong>Çok Servisli Docker Topolojisi:</strong> <code>hf_postgres_db</code>, <code>hf_dagster_service</code> ve <code>hf_fastapi_service</code> konteynerleri, <code>hf_net</code> ağı, Pytest asenkron testleri ve <code>DECISIONS.md</code> ADR dokümantasyonu.</li>
+              </ul>
+
+              <details class="arch-details">
+                <summary data-i18n="projects.arch.toggle">Mimari &amp; Klasör Yapısı</summary>
+                <pre class="arch-tree"><code>all_in_one/
+├── all_in_one_data_extracting/  # model_extracting.py (streaming generator)
+├── all_in_one_dbt/hf_models/    # snapshots (SCD2), staging, intermediate, marts
+├── all_in_one_orchestration/    # Dagster assets.py, definitions.py, schedules.py
+├── all_in_one_api/              # Async FastAPI routers, schemas, SlowAPI, tests/
+├── DECISIONS.md                 # Architecture Decision Records (ADR)
+└── docker-compose.yml           # db (5432) • orchestrator (3000) • api (8000)</code></pre>
+              </details>
+            </div>
+
+            <div class="project-footer">
+              <div class="tag-list">
+                <span class="tag">Python</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">dbt</span>
+                <span class="tag">Dagster</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">Docker</span>
+              </div>
+              <a
+                href="https://github.com/EnesAytekintr/all_in_one"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="repo-link"
+              >
+                <span data-i18n="projects.repo.view">GitHub</span>
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 14L14 6M8 6h6v6"></path>
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- PROJECT 2: STEAM DBT -->
+          <article class="project-card">
+            <div class="project-media media-dbt-teal">
+              <button
+                type="button"
+                class="media-trigger"
+                data-lightbox-src="templates/steam_dbt.png"
+                data-lightbox-title="Steam Games dbt Data Warehouse — Lineage Graph"
+                data-lightbox-bg="teal"
+                aria-label="Steam Games dbt Data Warehouse lineage grafiğini büyüt"
+              >
+                <img
+                  src="templates/steam_dbt.png"
+                  alt="Steam Games dbt veri ambarı projesinin staging, intermediate, dimension ve fact lineage grafiği"
+                  class="project-img"
+                  loading="eager"
+                />
+                <span class="media-zoom-hint" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13 3h4v4M7 17H3v-4M17 3l-5 5M3 17l5-5"></path>
+                  </svg>
+                  <span data-i18n="projects.zoom">Büyüt</span>
+                </span>
+              </button>
+            </div>
+
+            <div class="project-body">
+              <h3 class="project-title" data-i18n="p2.title">Steam Games dbt Data Warehouse Pipeline</h3>
+              <p class="project-summary" data-i18n="p2.summary">
+                95.000'den fazla Steam oyun kaydını Dockerize PostgreSQL ortamında işleyen; SCD Type-2 snapshot takibi, 6 intermediate dönüşüm modeli, surrogate key tabanlı yıldız şema ve 70'ten fazla otomatik veri kalitesi testi içeren analitik mühendisliği projesi.
+              </p>
+
+              <ul class="project-highlights">
+                <li data-i18n="p2.h1"><strong>SCD Type-2 &amp; Staging Katmanı:</strong> Ham veri (<code>steam.steam_march2025</code>) önce <code>scd_march2025</code> snapshot'ından geçirilerek geçmiş değişiklikler korunur, ardından <code>src_2025</code> ile standardize edilir.</li>
+                <li data-i18n="p2.h2"><strong>Yıldız Şema (5 Dimension + 1 Incremental Fact):</strong> <code>dim_date</code>, <code>dim_game</code>, <code>dim_media</code>, <code>dim_metadata</code>, <code>dim_platform</code> tabloları ve surrogate key'lerle bağlanan artımlı <code>fct_game_metrics</code>.</li>
+                <li data-i18n="p2.h3"><strong>70+ Otomatik Veri Kalitesi Testi:</strong> Şema/referans bütünlüğü testlerinin yanında özel jenerik <code>positive_values.sql</code> testi ve etkileşimli <code>dbt docs</code> lineage grafiği.</li>
+                <li data-i18n="p2.h4"><strong>Konteynerize Kurulum:</strong> <code>Dockerfile</code>, <code>compose.yml</code> ve <code>entry_point.sh</code> ile izole ortamda tekrarlanabilir veri ambarı derlemesi.</li>
+              </ul>
+
+              <details class="arch-details">
+                <summary data-i18n="projects.arch.toggle">Mimari &amp; Klasör Yapısı</summary>
+                <pre class="arch-tree"><code>steam-dbt-pipeline/steam/
+├── snapshots/     # src_march2025_snapshot.sql (SCD Type-2)
+├── models/
+│   ├── staging/   # src_2025.sql, _sources.yml, _staging_models.yml
+│   ├── intermediate/ # int_date, int_game, int_game_metrics, int_media, int_metadata, int_platform
+│   └── marts/     # dim/{date,game,media,metadata,platform} + fct/fct_game_metrics.sql
+├── tests/generic/ # positive_values.sql (+ 70+ şema &amp; bütünlük testi)
+└── compose.yml    # Dockerfile + entry_point.sh + PostgreSQL</code></pre>
+              </details>
+            </div>
+
+            <div class="project-footer">
+              <div class="tag-list">
+                <span class="tag">dbt</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">SQL</span>
+                <span class="tag">Docker</span>
+              </div>
+              <a
+                href="https://github.com/EnesAytekintr/steam-dbt-pipeline"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="repo-link"
+              >
+                <span data-i18n="projects.repo.view">GitHub</span>
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 14L14 6M8 6h6v6"></path>
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- PROJECT 3: REQUEST MANAGEMENT FASTAPI -->
+          <article class="project-card">
+            <div class="project-media media-light-window">
+              <button
+                type="button"
+                class="media-trigger"
+                data-lightbox-src="templates/request_management.png"
+                data-lightbox-title="Request Management System — FastAPI OpenAPI 3.1 Swagger UI"
+                data-lightbox-bg="light"
+                aria-label="Request Management System FastAPI Swagger arayüzünü büyüt"
+              >
+                <img
+                  src="templates/request_management.png"
+                  alt="Request Management System FastAPI OpenAPI 3.1 Swagger dokümantasyonu ve auth, request, model, users uçları"
+                  class="project-img project-img-framed"
+                  loading="eager"
+                />
+                <span class="media-zoom-hint" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13 3h4v4M7 17H3v-4M17 3l-5 5M3 17l5-5"></path>
+                  </svg>
+                  <span data-i18n="projects.zoom">Büyüt</span>
+                </span>
+              </button>
+            </div>
+
+            <div class="project-body">
+              <h3 class="project-title" data-i18n="p3.title">Request Management System (Async FastAPI)</h3>
+              <p class="project-summary" data-i18n="p3.summary">
+                Modern asenkron backend pratikleriyle geliştirilmiş; Pydantic v2 veri doğrulama, JWT kimlik doğrulama, yapılandırılmış hata yönetimi, Alembic şema geçişleri ve otomatik OpenAPI 3.1 dokümantasyonuna sahip üretim odaklı REST API servisi.
+              </p>
+
+              <ul class="project-highlights">
+                <li data-i18n="p3.h1"><strong>Tam Asenkron ORM Altyapısı:</strong> Python 3.12, FastAPI ve SQLAlchemy Async Session + <code>asyncpg</code> bağlantı havuzu ile bloklamayan (non-blocking) PostgreSQL sorguları.</li>
+                <li data-i18n="p3.h2"><strong>Modüler Router &amp; Test Kapsamı:</strong> <code>auth</code>, <code>request</code>, <code>model</code> ve <code>user</code> router'larına ayrılmış uçlar ve her modül için ayrı Pytest test paketleri.</li>
+                <li data-i18n="p3.h3"><strong>Optimize Docker İmajı (~77 MB):</strong> <code>python:3.12-slim</code> tabanı, BuildKit pip cache mount (<code>--mount=type=cache</code>) ve sıkı <code>.dockerignore</code> izolasyonu.</li>
+                <li data-i18n="p3.h4"><strong>Zero-Leak Yapılandırma &amp; Migration:</strong> Gizli anahtarlar imaja gömülmeden çalışma zamanında <code>.env</code> üzerinden enjekte edilir; Neon ve lokal PostgreSQL için Alembic migration desteği sunar.</li>
+              </ul>
+
+              <details class="arch-details">
+                <summary data-i18n="projects.arch.toggle">Mimari &amp; Klasör Yapısı</summary>
+                <pre class="arch-tree"><code>request_management_system_with_FastAPI/
+├── routers/       # auth.py, request.py, model.py, user.py
+├── alembic/       # veritabanı şema migration sürümleri (PostgreSQL / Neon)
+├── test/          # test_auth.py, test_request.py, test_model.py, test_user.py
+├── main.py, models.py, database.py
+└── Dockerfile &amp; docker-compose.yml  # python:3.12-slim + cache mount</code></pre>
+              </details>
+            </div>
+
+            <div class="project-footer">
+              <div class="tag-list">
+                <span class="tag">Python</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">SQLAlchemy</span>
+                <span class="tag">Pydantic</span>
+              </div>
+              <a
+                href="https://github.com/EnesAytekintr/request_management_system_with_FastAPI"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="repo-link"
+              >
+                <span data-i18n="projects.repo.view">GitHub</span>
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 14L14 6M8 6h6v6"></path>
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- PROJECT 4: MYDATAS -->
+          <article class="project-card">
+            <div class="project-media media-obsidian">
+              <button
+                type="button"
+                class="media-trigger"
+                data-lightbox-src="templates/mydatas.png"
+                data-lightbox-title="MyDataS — Masaüstü Veri Analizi ve Görselleştirme Aracı"
+                data-lightbox-bg="dark"
+                aria-label="MyDataS uygulama ekran görüntüsünü büyüt"
+              >
+                <img
+                  src="templates/mydatas.png"
+                  alt="MyDataS masaüstü veri analizi uygulamasının tablo görünümü ve Data Analyzing, Refactoring, Visualizing işlev paneli"
+                  class="project-img"
+                  loading="eager"
+                />
+                <span class="media-zoom-hint" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13 3h4v4M7 17H3v-4M17 3l-5 5M3 17l5-5"></path>
+                  </svg>
+                  <span data-i18n="projects.zoom">Büyüt</span>
+                </span>
+              </button>
+            </div>
+
+            <div class="project-body">
+              <h3 class="project-title" data-i18n="p4.title">MyDataS — Veri Analizi ve Görselleştirme Aracı</h3>
+              <p class="project-summary" data-i18n="p4.summary">
+                CSV ve Excel veri setlerini temizleme, gelişmiş eksik veri (NaN) yönetimi, istatistiksel özet çıkarma ve dinamik grafik üretme süreçlerini tek bir masaüstü iş akışında otomatize eden veri analizi aracı.
+              </p>
+
+              <ul class="project-highlights">
+                <li data-i18n="p4.h1"><strong>Veri Analizi Motoru (<code>dataset_analyzing.py</code>):</strong> Sütun ve tablo bazlı istatistiksel özetler, kategorik/sayısal mod analizi, NaN sayımı ve değere göre filtreleme.</li>
+                <li data-i18n="p4.h2"><strong>Veri Temizleme &amp; Refactoring (<code>dataset_refactoring.py</code>):</strong> Eşik (threshold) tabanlı satır/sütun silme, sabit değerle veya düşürerek NaN yönetimi, sütun yeniden adlandırma, duplicate temizleme ve geri alma (Undo).</li>
+                <li data-i18n="p4.h3"><strong>Dinamik Görselleştirme (<code>dataset_visualizing.py</code>):</strong> Kategorik toplam/ortalama/standart sapma bar grafikleri, dağılım histogramları, <code>hue</code> destekli scatter ve pasta grafikleri.</li>
+              </ul>
+
+              <div class="transparency-note">
+                <span class="transparency-badge" data-i18n="p4.transparency.label">Şeffaflık Notu</span>
+                <p data-i18n="p4.transparency.text">
+                  Veri işleme, temizleme ve görselleştirme motoru (<code>Pandas</code>, <code>NumPy</code>, <code>Matplotlib</code>, <code>Seaborn</code>) doğrudan tarafımdan geliştirilmiş; <code>PyQt6</code> masaüstü arayüz katmanı ise yapay zeka desteğiyle oluşturularak çekirdek mantığa entegre edilmiştir.
+                </p>
+              </div>
+
+              <details class="arch-details">
+                <summary data-i18n="projects.arch.toggle">Mimari &amp; Klasör Yapısı</summary>
+                <pre class="arch-tree"><code>mydatas/
+├── src/
+│   ├── dataset_analyzing.py    # İstatistiksel özet, mod &amp; NaN analizi
+│   ├── dataset_refactoring.py  # Temizleme, eşik bazlı silme, NaN yönetimi
+│   ├── dataset_visualizing.py  # Matplotlib &amp; Seaborn dinamik grafikleri
+│   └── mydatas_app.py          # PyQt6 masaüstü arayüz katmanı (AI-Assisted)
+└── test_dataset.csv</code></pre>
+              </details>
+            </div>
+
+            <div class="project-footer">
+              <div class="tag-list">
+                <span class="tag">Python</span>
+                <span class="tag">Pandas</span>
+                <span class="tag">NumPy</span>
+                <span class="tag">Matplotlib</span>
+                <span class="tag">Seaborn</span>
+                <span class="tag tag-subtle">PyQt6 (AI-Assisted)</span>
+              </div>
+              <a
+                href="https://github.com/EnesAytekintr/mydatas"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="repo-link"
+              >
+                <span data-i18n="projects.repo.view">GitHub</span>
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 14L14 6M8 6h6v6"></path>
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- PROJECT 5: CONFIGML (CAPSTONE - PLANNING PHASE) -->
+          <article class="project-card project-card-capstone">
+            <div class="project-media media-blueprint">
+              <div class="media-badges">
+                <span class="status-pill status-planning" data-i18n="p5.badge.status">Planlama Aşaması</span>
+                <span class="status-pill status-capstone" data-i18n="p5.badge.capstone">Bitirme Projesi</span>
+              </div>
+
+              <!-- Crisp System Architecture Placeholder (visible when templates/configml.png is not yet added) -->
+              <div class="blueprint-placeholder" aria-hidden="false">
+                <svg class="blueprint-svg" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="configML sistem mimarisi taslağı">
+                  <defs>
+                    <pattern id="bp-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+                      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="rgba(148,163,184,0.08)" stroke-width="1"/>
+                    </pattern>
+                    <marker id="bp-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#64748b"/>
+                    </marker>
+                  </defs>
+                  <rect width="800" height="450" fill="#0f141e"/>
+                  <rect width="800" height="450" fill="url(#bp-grid)"/>
+
+                  <!-- Outer Architecture Frame -->
+                  <rect x="28" y="64" width="744" height="332" rx="14" fill="rgba(18,23,32,0.72)" stroke="rgba(148,163,184,0.18)" stroke-dasharray="6 4"/>
+                  <text x="48" y="92" fill="#7f91a8" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="0.06em">SYSTEM ARCHITECTURE BLUEPRINT // CONFIGML PIPELINE</text>
+
+                  <!-- Node 1: Heterogeneous Sources -->
+                  <rect x="48" y="138" width="136" height="104" rx="10" fill="#151f2e" stroke="rgba(122,179,240,0.45)" stroke-width="1.5"/>
+                  <text x="64" y="164" fill="#7ab3f0" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600">01. INGEST</text>
+                  <text x="64" y="188" fill="#e6ecf2" font-family="Inter, sans-serif" font-size="14" font-weight="600">User Datasets</text>
+                  <text x="64" y="208" fill="#8d9eb3" font-family="JetBrains Mono, monospace" font-size="11">CSV / Excel / DB</text>
+                  <text x="64" y="226" fill="#8d9eb3" font-family="JetBrains Mono, monospace" font-size="11">Dynamic Columns</text>
+
+                  <!-- Arrow 1 -> 2 -->
+                  <line x1="184" y1="190" x2="216" y2="190" stroke="#64748b" stroke-width="1.8" marker-end="url(#bp-arrow)"/>
+
+                  <!-- Node 2: Schema Mapping -->
+                  <rect x="220" y="138" width="144" height="104" rx="10" fill="#132320" stroke="rgba(94,194,155,0.45)" stroke-width="1.5"/>
+                  <text x="236" y="164" fill="#5ec29b" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600">02. MAPPER</text>
+                  <text x="236" y="188" fill="#e6ecf2" font-family="Inter, sans-serif" font-size="14" font-weight="600">Schema Mapping</text>
+                  <text x="236" y="208" fill="#8d9eb3" font-family="JetBrains Mono, monospace" font-size="11">Source → Target</text>
+                  <text x="236" y="226" fill="#8d9eb3" font-family="JetBrains Mono, monospace" font-size="11">PostgreSQL Load</text>
+
+                  <!-- Arrow 2 -> 3 -->
+                  <line x1="364" y1="190" x2="396" y2="190" stroke="#64748b" stroke-width="1.8" marker-end="url(#bp-arrow)"/>
+
+                  <!-- Node 3: Custom DWH & dbt -->
+                  <rect x="400" y="138" width="160" height="104" rx="10" fill="#231d14" stroke="rgba(229,183,98,0.45)" stroke-width="1.5"/>
+                  <text x="416" y="164" fill="#e5b762" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600">03. WAREHOUSE</text>
+                  <text x="416" y="188" fill="#e6ecf2" font-family="Inter, sans-serif" font-size="14" font-weight="600">Star Schema + dbt</text>
+                  <text x="416" y="208" fill="#8d9eb3" font-family="JetBrains Mono, monospace" font-size="11">Custom Dim / Fact</text>
+                  <text x="416" y="226" fill="#8d9eb3" font-family="JetBrains Mono, monospace" font-size="11">Auto Transforms</text>
+
+                  <!-- Arrow 3 -> 4 -->
+                  <line x1="560" y1="190" x2="592" y2="190" stroke="#64748b" stroke-width="1.8" marker-end="url(#bp-arrow)"/>
+
+                  <!-- Node 4: Configurable ML -->
+                  <rect x="596" y="138" width="156" height="104" rx="10" fill="#1d182b" stroke="rgba(178,156,245,0.45)" stroke-width="1.5"/>
+                  <text x="612" y="164" fill="#b29cf5" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600">04. ML ENGINE</text>
+                  <text x="612" y="188" fill="#e6ecf2" font-family="Inter, sans-serif" font-size="14" font-weight="600">ConfigML Train</text>
+                  <text x="612" y="208" fill="#8d9eb3" font-family="JetBrains Mono, monospace" font-size="11">Scikit-learn</text>
+                  <text x="612" y="226" fill="#8d9eb3" font-family="JetBrains Mono, monospace" font-size="11">Modular Pipeline</text>
+
+                  <!-- Orchestration Bar Spanning Underneath -->
+                  <rect x="48" y="286" width="704" height="72" rx="10" fill="#141b27" stroke="rgba(148,163,184,0.28)" stroke-width="1.2"/>
+                  <text x="72" y="317" fill="#cbd5e1" font-family="JetBrains Mono, monospace" font-size="12" font-weight="600">ORCHESTRATION &amp; GOVERNANCE LAYER</text>
+                  <text x="72" y="340" fill="#8d9eb3" font-family="JetBrains Mono, monospace" font-size="11">Dagster Software-Defined Assets  •  PostgreSQL Storage  •  Config-Driven DAG Execution</text>
+
+                  <!-- Vertical connectors to Orchestration Bar -->
+                  <line x1="116" y1="242" x2="116" y2="286" stroke="rgba(148,163,184,0.35)" stroke-width="1.4" stroke-dasharray="4 3"/>
+                  <line x1="292" y1="242" x2="292" y2="286" stroke="rgba(148,163,184,0.35)" stroke-width="1.4" stroke-dasharray="4 3"/>
+                  <line x1="480" y1="242" x2="480" y2="286" stroke="rgba(148,163,184,0.35)" stroke-width="1.4" stroke-dasharray="4 3"/>
+                  <line x1="674" y1="242" x2="674" y2="286" stroke="rgba(148,163,184,0.35)" stroke-width="1.4" stroke-dasharray="4 3"/>
+                </svg>
+              </div>
+
+              <!-- Optional image slot: activates automatically if templates/configml.png is added -->
+              <img
+                src="templates/configml.png"
+                alt="configML sistem mimarisi görseli"
+                class="project-img project-img-optional"
+                loading="lazy"
+                data-optional-img="true"
+              />
+            </div>
+
+            <div class="project-body">
+              <h3 class="project-title" data-i18n="p5.title">configML — Şema Eşleştirme Tabanlı Veri Ambarı ve ML Boru Hattı</h3>
+              <p class="project-summary" data-i18n="p5.summary">
+                4. sınıf yazılım mühendisliği bitirme projesi olarak mimari planlama ve tasarım aşamasında olan uçtan uca veri &amp; ML platformu. Farklı kolon yapılarına sahip kullanıcı veri setlerinin hedef şemalara eşleştirilmesini (schema mapping), isteğe bağlı yıldız şema tasarımını, <code>dbt</code> dönüşümlerini, <code>Dagster</code> orkestrasyonunu ve yapılandırılabilir makine öğrenmesi eğitimini tek bir modüler yapıda birleştirmeyi hedefler.
+              </p>
+
+              <ul class="project-highlights">
+                <li data-i18n="p5.h1"><strong>Dinamik Şema Eşleştirme (Schema Mapping):</strong> Farklı kolon adları ve tiplerine sahip ham veri setlerini hedef veritabanı şemalarına esnek biçimde eşleyip PostgreSQL'e aktarma.</li>
+                <li data-i18n="p5.h2"><strong>Kullanıcı Tanımlı Veri Ambarı:</strong> Kullanıcıların kendi boyutsal modelleme (Star Schema — Dimension &amp; Fact) mimarilerini yapılandırabilmesi.</li>
+                <li data-i18n="p5.h3"><strong>Otomatik Dönüşüm &amp; Orkestrasyon:</strong> <code>dbt</code> ile otomatik veri dönüşümü/doğrulaması ve <code>Dagster</code> ile uçtan uca bağımlılık yönetimi.</li>
+                <li data-i18n="p5.h4"><strong>Yapılandırılabilir ML Katmanı:</strong> Modellenmiş veri ambarı tabloları üzerinden <code>Scikit-learn</code> tabanlı tekrarlanabilir model eğitimi ve değerlendirme akışları.</li>
+              </ul>
+
+              <details class="arch-details">
+                <summary data-i18n="projects.arch.toggle">Mimari &amp; Klasör Yapısı</summary>
+                <pre class="arch-tree"><code>configML/ (Planlanan Modüler Mimari)
+├── schema_mapper/     # Kaynak → hedef şema eşleştirme &amp; doğrulama kuralları
+├── warehouse_builder/ # Kullanıcı tanımlı Star Schema şablonları (PostgreSQL)
+├── dbt_transforms/    # Dinamik staging, dim/fact dönüşümleri &amp; veri testleri
+├── orchestration/     # Dagster asset grafiği ve uçtan uca iş akışı yönetimi
+└── ml_pipeline/       # Yapılandırılabilir Scikit-learn eğitim &amp; değerlendirme</code></pre>
+              </details>
+            </div>
+
+            <div class="project-footer">
+              <div class="tag-list">
+                <span class="tag tag-planning" data-i18n="p5.tag.planning">Mimari Planlama</span>
+                <span class="tag">Data Warehouse Design</span>
+                <span class="tag">Python</span>
+                <span class="tag">dbt</span>
+                <span class="tag">Dagster</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">Scikit-learn</span>
+              </div>
+              <a
+                href="https://github.com/EnesAytekintr"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="repo-link"
+              >
+                <span data-i18n="projects.repo.profile">GitHub Profili</span>
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 14L14 6M8 6h6v6"></path>
+                </svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. TECHNICAL SKILLS -->
+    <section id="skills" class="section section-alt" aria-labelledby="skills-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow" data-i18n="skills.eyebrow">03 / TEKNİK YETKİNLİKLER</span>
+          <h2 id="skills-heading" class="section-title" data-i18n="skills.title">Teknoloji Yığını ve Kullanım Bağlamı</h2>
+          <p class="section-subtitle" data-i18n="skills.subtitle">
+            Her teknolojinin yanında mevcut deneyim bağlamım ve bu seviyeyi neden seçtiğimi özetleyen kısa açıklamam yer almaktadır.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Category 1: Data Engineering & Database (Matte Blue) -->
+          <section class="skill-card skill-blue" aria-labelledby="cat-data-eng">
+            <header class="skill-card-head">
+              <span class="skill-cat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                  <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"></path>
+                  <path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"></path>
+                </svg>
+              </span>
+              <h3 id="cat-data-eng" class="skill-cat-title" data-i18n="skills.cat1.title">Data Engineering &amp; Veritabanı</h3>
+            </header>
+
+            <ul class="skill-list">
+              <li class="skill-item">
+                <div class="skill-row">
+                  <span class="skill-name">PostgreSQL &amp; SQL</span>
+                  <span class="level-badge level-core" data-i18n="level.core">Ana Odak</span>
+                </div>
+                <p class="skill-desc" data-i18n="skill.pg.desc">
+                  Büyük ölçekli tablolarda CTE, Window Functions, indeksleme ve yıldız şema veri modellemesinde aktif olarak kullandım.
+                </p>
+              </li>
+
+              <li class="skill-item">
+                <div class="skill-row">
+                  <span class="skill-name">dbt (Data Build Tool)</span>
+                  <span class="level-badge level-core" data-i18n="level.core">Ana Odak</span>
+                </div>
+                <p class="skill-desc" data-i18n="skill.dbt.desc">
+                  Veri ambarı projelerinde artımlı modeller, SCD Type-2 snapshot'ları ve otomatik veri kalitesi testleri kurguladım.
+                </p>
+              </li>
+
+              <li class="skill-item">
+                <div class="skill-row">
+                  <span class="skill-name">Dagster</span>
+                  <span class="level-badge level-active" data-i18n="level.active">Aktif Kullanım</span>
+                </div>
+                <p class="skill-desc" data-i18n="skill.dagster.desc">
+                  Veri alımı ve dbt dönüşüm adımlarını bağımlılıklarına göre otomatize edip orkestre etmek için projelerimde kullandım.
+                </p>
+              </li>
+
+              <li class="skill-item">
+                <div class="skill-row">
+                  <span class="skill-name">Apache Airflow</span>
+                  <span class="level-badge level-exploring" data-i18n="level.exploring">Deneme Aşaması</span>
+                </div>
+                <p class="skill-desc" data-i18n="skill.airflow.desc">
+                  DAG mimarisini ve iş akışı zamanlama mantığını kavramak üzere lokal ortamda denemeler ve küçük alıştırmalar yapıyorum.
+                </p>
+              </li>
+            </ul>
+          </section>
+
+          <!-- Category 2: Backend & Software Development (Matte Emerald Green) -->
+          <section class="skill-card skill-emerald" aria-labelledby="cat-backend">
+            <header class="skill-card-head">
+              <span class="skill-cat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </span>
+              <h3 id="cat-backend" class="skill-cat-title" data-i18n="skills.cat2.title">Backend &amp; Yazılım Geliştirme</h3>
+            </header>
+
+            <ul class="skill-list">
+              <li class="skill-item">
+                <div class="skill-row">
+                  <span class="skill-name">Python</span>
+                  <span class="level-badge level-core" data-i18n="level.core">Ana Odak</span>
+                </div>
+                <p class="skill-desc" data-i18n="skill.python.desc">
+                  Veri işleme boru hatları, ETL scriptleri, veri analizi araçları ve backend servisleri geliştirirken birincil dilim olarak kullanıyorum.
+                </p>
+              </li>
+
+              <li class="skill-item">
+                <div class="skill-row">
+                  <span class="skill-name">FastAPI</span>
+                  <span class="level-badge level-active" data-i18n="level.active">Aktif Kullanım</span>
+                </div>
+                <p class="skill-desc" data-i18n="skill.fastapi.desc">
+                  Asenkron REST API uçları, Pydantic veri doğrulama ve rate-limiting mimarileri kurgulamak için projelerimde kullandım.
+                </p>
+              </li>
+
+              <li class="skill-item">
+                <div class="skill-row">
+                  <span class="skill-name">SQLAlchemy &amp; Pytest</span>
+                  <span class="level-badge level-active" data-i18n="level.active">Aktif Kullanım</span>
+                </div>
+                <p class="skill-desc" data-i18n="skill.sqlalchemy.desc">
+                  Veritabanı bağlantıları, ORM sorguları ve backend uçlarının birim/entegrasyon testlerini yazarken kullandım.
+                </p>
+              </li>
+            </ul>
+          </section>
+
+          <!-- Category 3: Tools, Containers & OS (Matte Amber / Orange) -->
+          <section class="skill-card skill-amber" aria-labelledby="cat-tools">
+            <header class="skill-card-head">
+              <span class="skill-cat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="4 17 10 11 4 5"></polyline>
+                  <line x1="12" y1="19" x2="20" y2="19"></line>
+                </svg>
+              </span>
+              <h3 id="cat-tools" class="skill-cat-title" data-i18n="skills.cat3.title">Araçlar, Konteyner &amp; İşletim Sistemi</h3>
+            </header>
+
+            <ul class="skill-list">
+              <li class="skill-item">
+                <div class="skill-row">
+                  <span class="skill-name">Docker &amp; Docker Compose</span>
+                  <span class="level-badge level-active" data-i18n="level.active">Aktif Kullanım</span>
+                </div>
+                <p class="skill-desc" data-i18n="skill.docker.desc">
+                  Veritabanı, orkestrasyon ve API servislerini izole konteynerlerde çok servisli mimariler halinde ayağa kaldırmak için kullanıyorum.
+                </p>
+              </li>
+
+              <li class="skill-item">
+                <div class="skill-row">
+                  <span class="skill-name">Git &amp; GitHub</span>
+                  <span class="level-badge level-active" data-i18n="level.active">Aktif Kullanım</span>
+                </div>
+                <p class="skill-desc" data-i18n="skill.git.desc">
+                  Tüm projelerimde versiyon kontrolü, dal (branch) yönetimi ve düzenli dokümantasyon takibi için aktif kullanıyorum.
+                </p>
+              </li>
+
+              <li class="skill-item">
+                <div class="skill-row">
+                  <span class="skill-name">Linux &amp; Bash</span>
+                  <span class="level-badge level-active" data-i18n="level.active">Aktif Kullanım</span>
+                </div>
+                <p class="skill-desc" data-i18n="skill.linux.desc">
+                  Günlük geliştirme ortamı olarak Arch Linux kullanıyor, otomasyon ve sistem yönetimi için temel Bash scriptleri yazıyorum.
+                </p>
+              </li>
+            </ul>
+          </section>
+
+          <!-- Category 4: Data Analysis, BI & Interface (Matte Purple / Lavender) -->
+          <section class="skill-card skill-lavender" aria-labelledby="cat-analytics">
+            <header class="skill-card-head">
+              <span class="skill-cat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+              </span>
+              <h3 id="cat-analytics" class="skill-cat-title" data-i18n="skills.cat4.title">Veri Analizi, İş Zekası &amp; Arayüz</h3>
+            </header>
+
+            <ul class="skill-list">
+              <li class="skill-item">
+                <div class="skill-row">
+                  <span class="skill-name">Pandas &amp; NumPy</span>
+                  <span class="level-badge level-active" data-i18n="level.active">Aktif Kullanım</span>
+                </div>
+                <p class="skill-desc" data-i18n="skill.pandas.desc">
+                  Veri setlerinin temizlenmesi, dönüştürülmesi ve istatistiksel ön işleme adımlarında düzenli olarak kullandım.
+                </p>
+              </li>
+
+              <li class="skill-item">
+                <div class="skill-row">
+                  <span class="skill-name">Matplotlib &amp; Seaborn</span>
+                  <span class="level-badge level-active" data-i18n="level.active">Aktif Kullanım</span>
+                </div>
+                <p class="skill-desc" data-i18n="skill.matplotlib.desc">
+                  Keşifsel veri analizi (EDA) süreçlerinde dağılım ve korelasyon grafiklerini otomatikleştirmek için kullandım.
+                </p>
+              </li>
+
+              <li class="skill-item">
+                <div class="skill-row">
+                  <span class="skill-name">Power BI</span>
+                  <span class="level-badge level-learning" data-i18n="level.learning">Öğrenme Aşaması</span>
+                </div>
+                <p class="skill-desc" data-i18n="skill.powerbi.desc">
+                  Veri ambarında modellediğim tabloları görsel raporlara dönüştürmek amacıyla veri modelleme ve DAX temellerini öğreniyorum.
+                </p>
+              </li>
+
+              <li class="skill-item">
+                <div class="skill-row">
+                  <span class="skill-name">Microsoft Excel</span>
+                  <span class="level-badge level-learning" data-i18n="level.learning">Öğrenme Aşaması</span>
+                </div>
+                <p class="skill-desc" data-i18n="skill.excel.desc">
+                  Veri analizi temellerini pekiştirmek için formüller, pivot tablolar ve veri temizleme pratikleri üzerine çalışıyorum.
+                </p>
+              </li>
+
+              <li class="skill-item">
+                <div class="skill-row">
+                  <span class="skill-name">PyQt6</span>
+                  <span class="level-badge level-ai" data-i18n="level.ai">AI Destekli Kullanım</span>
+                </div>
+                <p class="skill-desc" data-i18n="skill.pyqt.desc">
+                  Kütüphaneye doğrudan hakimiyetim bulunmamakla birlikte, masaüstü veri analizi projemde arayüz katmanını yapay zeka yardımıyla oluşturup arka plan mantığına entegre ettim.
+                </p>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. ACADEMIC BACKGROUND & CONTACT -->
+    <section id="contact" class="section" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow" data-i18n="bottom.eyebrow">04 / AKADEMİK GEÇMİŞ &amp; İLETİŞİM</span>
+          <h2 id="contact-heading" class="section-title" data-i18n="bottom.title">Eğitim ve İletişim Kanalları</h2>
+        </div>
+
+        <div class="bottom-grid">
+          <!-- Academic Background Card -->
+          <article class="info-card edu-card">
+            <div class="info-card-label" data-i18n="edu.label">AKADEMİK GEÇMİŞ</div>
+            <h3 class="edu-school" data-i18n="edu.school">İstanbul Beykent Üniversitesi</h3>
+            <p class="edu-degree" data-i18n="edu.degree">Yazılım Mühendisliği (Lisans — 4. Sınıf)</p>
+
+            <div class="edu-metrics">
+              <div class="metric-box">
+                <span class="metric-label" data-i18n="edu.grad.label">Beklenen Mezuniyet</span>
+                <span class="metric-value">2027</span>
+              </div>
+              <div class="metric-box">
+                <span class="metric-label" data-i18n="edu.gpa.label">GNO</span>
+                <span class="metric-value">3.32 <span class="metric-denom">/ 4.00</span></span>
+              </div>
+            </div>
+
+            <p class="edu-note" data-i18n="edu.note">
+              Veritabanı sistemleri, veri modelleme ve backend yazılım mimarileri üzerine yoğunlaşıyor; 4. sınıf bitirme projem olan configML ile dinamik şema eşleştirme ve veri ambarı tabanlı ML boru hattı tasarlıyorum.
+            </p>
+          </article>
+
+          <!-- Contact Card -->
+          <article class="info-card contact-card">
+            <div class="info-card-label" data-i18n="contact.label">İLETİŞİM</div>
+            <h3 class="contact-heading" data-i18n="contact.heading">Birlikte Çalışmak veya Tanışmak İçin</h3>
+            <p class="contact-note" data-i18n="contact.note">
+              Data Engineering, Analytics Engineering ve Backend Development staj/çalışma fırsatları veya teknik projeler üzerine konuşmak için aşağıdaki kanallardan doğrudan ulaşabilirsiniz.
+            </p>
+
+            <div class="contact-list">
+              <a
+                href="https://www.linkedin.com/in/enes-aytekin-3346a6308/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-row"
+              >
+                <span class="contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2A3.26 3.26 0 0 0 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17A1.4 1.4 0 0 1 15.71 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 0 0 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V10.13H5.5V18.5H8.27Z"/>
+                  </svg>
+                </span>
+                <span class="contact-meta">
+                  <span class="contact-name">LinkedIn</span>
+                  <span class="contact-value">linkedin.com/in/enes-aytekin-3346a6308</span>
+                </span>
+                <span class="contact-arrow" aria-hidden="true">↗</span>
+              </a>
+
+              <a
+                href="https://github.com/EnesAytekintr"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-row"
+              >
+                <span class="contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z"/>
+                  </svg>
+                </span>
+                <span class="contact-meta">
+                  <span class="contact-name">GitHub</span>
+                  <span class="contact-value">github.com/EnesAytekintr</span>
+                </span>
+                <span class="contact-arrow" aria-hidden="true">↗</span>
+              </a>
+
+              <div class="contact-row contact-row-phone">
+                <a href="tel:+905309486120" class="contact-phone-link">
+                  <span class="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                  </span>
+                  <span class="contact-meta">
+                    <span class="contact-name" data-i18n="contact.phone.label">Telefon</span>
+                    <span class="contact-value">+90 530 948 61 20</span>
+                  </span>
+                </a>
+                <button
+                  type="button"
+                  class="copy-btn"
+                  id="copy-phone-btn"
+                  data-copy="+90 530 948 61 20"
+                  data-i18n="contact.copy"
+                >
+                  Kopyala
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <span class="footer-brand">Enes Aytekin</span>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <span class="footer-copy" data-i18n="footer.rights">Data &amp; Analytics Engineering • Backend Development</span>
+      </div>
+
+      <div class="footer-links">
+        <a href="https://github.com/EnesAytekintr" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/enes-aytekin-3346a6308/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="tel:+905309486120">+90 530 948 61 20</a>
+        <a href="#top" class="back-top" data-i18n="footer.top">Yukarı ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Diagram / Screenshot Lightbox Modal -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" hidden>
+    <div class="lightbox-backdrop" data-lightbox-close="true"></div>
+    <div class="lightbox-panel">
+      <div class="lightbox-header">
+        <h3 id="lightbox-title" class="lightbox-title"></h3>
+        <button type="button" class="icon-btn lightbox-close" id="lightbox-close" aria-label="Kapat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="lightbox-stage" id="lightbox-stage">
+        <img src="" alt="" id="lightbox-img" class="lightbox-img" />
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
