@@ -115,14 +115,13 @@
 
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body id="top">
   <a href="#main-content" class="skip-link" data-i18n="a11y.skip">İçeriğe geç</a>
 
   <!-- Top Navigation -->
-  <header class="site-header" id="top">
+  <header class="site-header">
     <div class="container header-inner">
       <a href="#top" class="brand" aria-label="Enes Aytekin">
-        <span class="brand-mark" aria-hidden="true">EA</span>
         <span class="brand-text">
           <span class="brand-name">Enes Aytekin</span>
           <span class="brand-tag">data &amp; backend</span>
@@ -754,16 +753,6 @@
                 <li data-i18n="p5.h3"><strong>Otomatik Dönüşüm &amp; Orkestrasyon:</strong> <code>dbt</code> ile otomatik veri dönüşümü/doğrulaması ve <code>Dagster</code> ile uçtan uca bağımlılık yönetimi.</li>
                 <li data-i18n="p5.h4"><strong>Yapılandırılabilir ML Katmanı:</strong> Modellenmiş veri ambarı tabloları üzerinden <code>Scikit-learn</code> tabanlı tekrarlanabilir model eğitimi ve değerlendirme akışları.</li>
               </ul>
-
-              <details class="arch-details">
-                <summary data-i18n="projects.arch.toggle">Mimari &amp; Klasör Yapısı</summary>
-                <pre class="arch-tree"><code>configML/ (Planlanan Modüler Mimari)
-├── schema_mapper/     # Kaynak → hedef şema eşleştirme &amp; doğrulama kuralları
-├── warehouse_builder/ # Kullanıcı tanımlı Star Schema şablonları (PostgreSQL)
-├── dbt_transforms/    # Dinamik staging, dim/fact dönüşümleri &amp; veri testleri
-├── orchestration/     # Dagster asset grafiği ve uçtan uca iş akışı yönetimi
-└── ml_pipeline/       # Yapılandırılabilir Scikit-learn eğitim &amp; değerlendirme</code></pre>
-              </details>
             </div>
 
             <div class="project-footer">

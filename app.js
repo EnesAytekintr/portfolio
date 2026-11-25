@@ -647,6 +647,20 @@
     });
   }
 
+  function initScrollToTop() {
+    document.querySelectorAll('a[href="#top"]').forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const reduced =
+          window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+        if (window.location.hash === "#top" && window.history && window.history.replaceState) {
+          window.history.replaceState(null, "", window.location.pathname + window.location.search);
+        }
+      });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     initThemeToggle();
     initLangSwitch();
@@ -655,5 +669,6 @@
     initOptionalProjectImages();
     initLightbox();
     initCopyPhone();
+    initScrollToTop();
   });
 })();

@@ -219,23 +219,7 @@ button {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 11px;
   flex-shrink: 0;
-}
-
-.brand-mark {
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-strong);
-  display: grid;
-  place-items: center;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: -0.02em;
 }
 
 .brand-text {
